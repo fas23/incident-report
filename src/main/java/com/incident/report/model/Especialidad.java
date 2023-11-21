@@ -13,4 +13,28 @@ public class Especialidad {
     private String nombre;
     @OneToMany(mappedBy = "especialidad")
     private List<Tecnico> tecnicos;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Tecnico> getTecnicos() {
+        return tecnicos;
+    }
+
+    public void setTecnicos(List<Tecnico> tecnicos) {
+        this.tecnicos = tecnicos;
+    }
 }
