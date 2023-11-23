@@ -18,8 +18,8 @@ public class EspecialidadServiceImpl implements IGenerica<Especialidad>{
     }
 
     @Override
-    public void delete(Especialidad objeto) {
-        especialidadRepository.delete(objeto);
+    public void delete(Long id) {
+        especialidadRepository.deleteById(id);
     }
 
     @Override

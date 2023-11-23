@@ -12,7 +12,9 @@ public class Tecnico {
     private String nombre;
     @Column(name = "apellido")
     private String apellido;
-    @ManyToOne
+    @Column(name = "estado")
+    private Boolean estado;
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "especialidad_id")
     private Especialidad especialidad;
 
@@ -38,6 +40,14 @@ public class Tecnico {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     public Especialidad getEspecialidad() {

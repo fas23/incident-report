@@ -11,7 +11,7 @@ public class Especialidad {
     private Long id;
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(mappedBy = "especialidad")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "especialidad")
     private List<Tecnico> tecnicos;
 
     public Long getId() {
