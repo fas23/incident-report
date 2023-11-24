@@ -23,7 +23,7 @@ public class EspecialidadServiceImpl implements IGenerica<Especialidad>{
     }
 
     @Override
-    public Especialidad update(Especialidad objeto) {
+    public Especialidad update(Especialidad objeto, Long id) {
         return null;
     }
 

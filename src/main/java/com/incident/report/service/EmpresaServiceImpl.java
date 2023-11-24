@@ -22,7 +22,7 @@ public class EmpresaServiceImpl implements IGenerica<Empresa>{
         empresaRepository.deleteById(id);
     }
     @Override
-    public Empresa update(Empresa objeto) {
+    public Empresa update(Empresa objeto, Long id) {
         return null;
     }
 
