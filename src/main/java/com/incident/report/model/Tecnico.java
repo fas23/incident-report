@@ -1,5 +1,6 @@
 package com.incident.report.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,8 +17,19 @@ public class Tecnico {
     private Boolean estado;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "especialidad_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Especialidad especialidad;
 
+    public Tecnico() {
+    }
+
+    public Tecnico(Long id, String nombre, String apellido, Boolean estado, Especialidad especialidad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.estado = estado;
+        this.especialidad = especialidad;
+    }
     public Long getId() {
         return id;
     }

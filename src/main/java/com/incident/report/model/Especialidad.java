@@ -2,6 +2,7 @@ package com.incident.report.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table(name = "especialidades")
@@ -13,6 +14,15 @@ public class Especialidad {
     private String nombre;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "especialidad")
     private List<Tecnico> tecnicos;
+    public Especialidad() {
+        tecnicos = new ArrayList<>();
+    }
+
+    public Especialidad(Long id, String nombre, List<Tecnico> tecnicos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tecnicos = tecnicos;
+    }
 
     public Long getId() {
         return id;

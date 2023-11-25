@@ -13,6 +13,15 @@ public class Usuario {
     @Column(name = "password")
     private String password;
 
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String usuario, String password) {
+        this.id = id;
+        this.usuario = usuario;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }

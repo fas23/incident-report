@@ -2,6 +2,7 @@ package com.incident.report.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,16 @@ public class Empresa {
     private String cuit;
     @OneToMany(mappedBy = "empresa")
     private List<Incidente> incidentes;
+    public Empresa() {
+        incidentes = new ArrayList<>();
+    }
+    public Empresa(Long id, String razonSocial, String cuit, List<Incidente> incidentes) {
+        this.id = id;
+        this.razonSocial = razonSocial;
+        this.cuit = cuit;
+        this.incidentes = incidentes;
+    }
+
     public Long getId() {
         return id;
     }
