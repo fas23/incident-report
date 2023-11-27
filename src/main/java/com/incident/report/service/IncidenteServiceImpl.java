@@ -11,6 +11,7 @@ import com.incident.report.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class IncidenteServiceImpl implements IGenerica<Incidente>{
@@ -33,6 +34,7 @@ public class IncidenteServiceImpl implements IGenerica<Incidente>{
         objeto.setEmpresa(empresa);
         objeto.setTecnico(tecnico);
         objeto.setUsuario(usuario);
+        objeto.setFecha(LocalDate.now());
         tecnico.setEstado(true);
         tecnicoService.update(tecnico,tecnico.getId());
         return incidenteRepository.save(objeto);

@@ -17,6 +17,7 @@ public class Empresa {
     private String cuit;
     @OneToMany(mappedBy = "empresa")
     private List<Incidente> incidentes;
+
     public Empresa() {
         incidentes = new ArrayList<>();
     }

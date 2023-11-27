@@ -16,6 +16,8 @@ public class Incidente {
     private String descripcion;
     @Column(name = "tipo")
     private String tipo;
+    @Column(name = "fecha")
+    private LocalDate fecha;
     @Column(name = "tiempo_estimado_resolucion")
     private LocalTime tiempoEstimadoResolucion;
     @Column(name = "fecha_posible_solucion")
@@ -109,5 +111,13 @@ public class Incidente {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 }
