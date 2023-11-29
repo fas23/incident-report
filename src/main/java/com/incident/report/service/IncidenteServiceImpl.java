@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 @Service
-public class IncidenteServiceImpl implements IGenerica<Incidente>{
+public class IncidenteServiceImpl implements IGenerica<Incidente>, IIncidenteService{
     @Autowired
     private IncidenteRepository incidenteRepository;
     @Autowired
@@ -28,13 +28,14 @@ public class IncidenteServiceImpl implements IGenerica<Incidente>{
 
     @Override
     public Incidente save(Incidente objeto) {
-        Empresa empresa = empresaRepository.findById(objeto.getEmpresa().getId()).orElse(null);
-        Tecnico tecnico = tecnicoRepository.findById(objeto.getTecnico().getId()).orElse(null);
-        Usuario usuario = usuarioRepository.findById(objeto.getUsuario().getId()).orElse(null);
+        Empresa empresa = empresaRepository.findById(objeto.getEmpresa().getId()).get();
+        Tecnico tecnico = tecnicoRepository.findById(objeto.getTecnico().getId()).get();
+        Usuario usuario = usuarioRepository.findById(objeto.getUsuario().getId()).get();
         objeto.setEmpresa(empresa);
         objeto.setTecnico(tecnico);
         objeto.setUsuario(usuario);
         objeto.setFecha(LocalDate.now());
+        objeto.setEstado(false);
         tecnico.setEstado(true);
         tecnicoService.update(tecnico,tecnico.getId());
         return incidenteRepository.save(objeto);
@@ -47,11 +48,26 @@ public class IncidenteServiceImpl implements IGenerica<Incidente>{
 
     @Override
     public Incidente update(Incidente objeto, Long id) {
-        return null;
+        Incidente updateIncidente = incidenteRepository.findById(id).get();
+        updateIncidente.setDescripcion(objeto.getDescripcion());
+        updateIncidente.setTipo(objeto.getTipo());
+        updateIncidente.setFecha(objeto.getFecha());
+        updateIncidente.setFechaPosibleSolucion(objeto.getFechaPosibleSolucion());
+        updateIncidente.setTiempoEstimadoResolucion(objeto.getTiempoEstimadoResolucion());
+        updateIncidente.setEstado(objeto.getEstado());
+        updateIncidente.setEmpresa(objeto.getEmpresa());
+        updateIncidente.setTecnico(objeto.getTecnico());
+        updateIncidente.setUsuario(objeto.getUsuario());
+        return incidenteRepository.save(updateIncidente);
     }
 
     @Override
     public List<Incidente> getAll() {
         return (List<Incidente>) incidenteRepository.findAll();
+    }
+
+    @Override
+    public List<Incidente> findByFecha(LocalDate date) {
+        return incidenteRepository.findByFecha(date);
     }
 }

@@ -1,5 +1,6 @@
 package com.incident.report.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -15,9 +16,8 @@ public class Tecnico {
     private String apellido;
     @Column(name = "estado")
     private Boolean estado;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "especialidad_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Especialidad especialidad;
 
     public Tecnico() {

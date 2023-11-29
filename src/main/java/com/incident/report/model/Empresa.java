@@ -1,5 +1,6 @@
 package com.incident.report.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Empresa {
     @Column(name = "cuit")
     private String cuit;
     @OneToMany(mappedBy = "empresa")
+    @JsonIgnore
     private List<Incidente> incidentes;
 
     public Empresa() {

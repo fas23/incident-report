@@ -21,4 +21,9 @@ public class IncidenteController {
         return incidenteService.save(incidente);
 
     }
+    @PutMapping("incidente/{id}")
+    public Incidente updateIncidente(@RequestBody Incidente incidente, @PathVariable("id") Long id) {
+        return incidenteService.update(incidente, id);
+
+    }
 }

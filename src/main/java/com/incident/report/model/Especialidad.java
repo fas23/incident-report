@@ -1,5 +1,6 @@
 package com.incident.report.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -12,7 +13,8 @@ public class Especialidad {
     private Long id;
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "especialidad")
+    @OneToMany(mappedBy = "especialidad")
+    @JsonIgnore
     private List<Tecnico> tecnicos;
     public Especialidad() {
         tecnicos = new ArrayList<>();

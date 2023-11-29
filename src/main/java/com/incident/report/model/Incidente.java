@@ -1,5 +1,6 @@
 package com.incident.report.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -22,17 +23,17 @@ public class Incidente {
     private LocalTime tiempoEstimadoResolucion;
     @Column(name = "fecha_posible_solucion")
     private LocalDate fechaPosibleSolucion;
+    @Column(name = "estado")
+    private Boolean estado;
     @ManyToOne
     @JoinColumn(name="empresa_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Empresa empresa;
     @ManyToOne
     @JoinColumn(name="tecnico_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Tecnico tecnico;
     @ManyToOne
     @JoinColumn(name="usuario_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnore
     private Usuario usuario;
 
     public Incidente() {
@@ -119,5 +120,13 @@ public class Incidente {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 }
